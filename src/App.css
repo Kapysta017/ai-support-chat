@@ -1,0 +1,178 @@
+/* Контейнер усього додатка */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+  width: 100%;
+}
+
+/* Шапка чату */
+.chat-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  background: var(--bg);
+}
+
+.chat-header h1 {
+  font-family: var(--heading);
+  color: var(--text-h);
+  font-size: 1.5rem;
+  margin: 0 0 0.25rem 0;
+  font-weight: 700;
+}
+
+.chat-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Вікно повідомлень (основна зона скролу) */
+.chat-window {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: var(--bg);
+}
+
+/* Обгортка повідомлення */
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Розподіл повідомлень по сторонах */
+.message-wrapper.user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.message-wrapper.ai {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+/* Ім'я відправника над хмаркою */
+.message-sender {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+/* Сама хмарка тексту */
+.message-text {
+  padding: 0.85rem 1.15rem;
+  border-radius: 16px;
+  line-height: 145%;
+  text-align: left;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.message-text::selection {
+  color: black;
+}
+
+/* Стилі для користувача */
+.message-wrapper.user .message-text {
+  background: var(--accent);
+  color: black;
+  border-bottom-right-radius: 4px;
+  box-shadow: var(--shadow);
+}
+
+/* Стилі для штучного інтелекту */
+.message-wrapper.ai .message-text {
+  background: var(--code-bg);
+  color: var(--text-h);
+  border-top-left-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* Спеціальний стиль для стану завантаження */
+.message-wrapper.loading .message-text {
+  color: var(--text);
+  font-style: italic;
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+/* Нижня панель із формою вводу */
+.chat-footer {
+  padding: 1.25rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.chat-form {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* Поле вводу */
+.chat-form input {
+  flex: 1;
+  font: inherit;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  color: var(--text-h);
+  border-radius: 12px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.chat-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.chat-form input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Кнопка відправки */
+.chat-form button {
+  background: var(--accent);
+  color: black;
+  border: none;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease,
+    opacity 0.2s ease;
+}
+
+.chat-form button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.chat-form button:disabled {
+  background: var(--border);
+  color: var(--text);
+  cursor: not-allowed;
+  transform: none;
+}
